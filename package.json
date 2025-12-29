@@ -1,0 +1,28 @@
+{
+  "name": "swiggy-react-app",
+  "version": "1.0.0",
+  "default": "App.js",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaiknizamuddin/swiggy-react-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shaiknizamuddin/swiggy-react-app/issues"
+  },
+  "homepage": "https://github.com/shaiknizamuddin/swiggy-react-app#readme",
+  "description": "",
+  "devDependencies": {
+    "parcel": "^2.16.3"
+  },
+  "dependencies": {
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  }
+}
