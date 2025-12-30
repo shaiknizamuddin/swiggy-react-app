@@ -41,81 +41,57 @@ const Header = () => (
   </div>
 );
 
-const RestaurantCards = () => (
-  <div className="restaurant-cards">
+const RestaurantCards = (props) => {
+  console.log(props, "props");
+  return (
     <div className="card-container">
       <img src={appLogoUrl} alt="Restaurant" />
-      <div className="title">Riyaz Biriyani</div>
+      <div className="title">{props.resName}</div>
       <div className="details">
-        <p>Delivers in 30 mins</p>
-        <p>4.5 star</p>
-        <p>Biriyani, Mughali, Roti, Curries</p>
-        <p>Hitech City</p>
+        <p>{props.rating} star</p>
+        <p>{props.cusine}</p>
+        <p>{props.address}</p>
       </div>
     </div>
-    <div className="card-container">
-      <img src={appLogoUrl} alt="Restaurant" />
-      <div className="title">Riyaz Biriyani</div>
-      <div className="details">
-        <p>Delivers in 30 mins</p>
-        <p>4.5 star</p>
-        <p>Biriyani, Mughali, Roti, Curries</p>
-        <p>Hitech City</p>
-      </div>
-    </div>
-    <div className="card-container">
-      <img src={appLogoUrl} alt="Restaurant" />
-      <div className="title">Riyaz Biriyani</div>
-      <div className="details">
-        <p>Delivers in 30 mins</p>
-        <p>4.5 star</p>
-        <p>Biriyani, Mughali, Roti, Curries</p>
-        <p>Hitech City</p>
-      </div>
-    </div>
-    <div className="card-container">
-      <img src={appLogoUrl} alt="Restaurant" />
-      <div className="title">Riyaz Biriyani</div>
-      <div className="details">
-        <p>Delivers in 30 mins</p>
-        <p>4.5 star</p>
-        <p>Biriyani, Mughali, Roti, Curries</p>
-        <p>Hitech City</p>
-      </div>
-    </div>
-    <div className="card-container">
-      <img src={appLogoUrl} alt="Restaurant" />
-      <div className="title">Riyaz Biriyani</div>
-      <div className="details">
-        <p>Delivers in 30 mins</p>
-        <p>4.5 star</p>
-        <p>Biriyani, Mughali, Roti, Curries</p>
-        <p>Hitech City</p>
-      </div>
-    </div>
-    <div className="card-container">
-      <img src={appLogoUrl} alt="Restaurant" />
-      <div className="title">Riyaz Biriyani</div>
-      <div className="details">
-        <p>Delivers in 30 mins</p>
-        <p>4.5 star</p>
-        <p>Biriyani, Mughali, Roti, Curries</p>
-        <p>Hitech City</p>
-      </div>
-    </div>
-  </div>
-);
+  );
+};
 
 const Body = () => (
-  <div className="body" style={{ backgroundColor: "beige" }}>
+  <div
+    className="body"
+    style={{ backgroundColor: "beige", height: "calc(100vh - 70px)" }}
+  >
     <div className="search-bar">
       <input
         type="text"
         placeholder="Search for restaurants, cuisines or a dish"
       />
     </div>
-    <div className="restaurant">
-      <RestaurantCards />
+    <div className="restaurant-cards">
+      <RestaurantCards
+        resName="Riyaz Biriyani"
+        rating="4.5"
+        cusine="Biriyani, Mughali, Roti, Curries"
+        address="Hitech City"
+      />
+      <RestaurantCards
+        resName="Biryani House"
+        rating="4.2"
+        cusine="Biriyani, Mughali, Roti, Curries"
+        address="Hitech City"
+      />
+      <RestaurantCards
+        resName="Tasty Biryani"
+        rating="4.7"
+        cusine="Biriyani, Mughali, Roti, Curries"
+        address="Hitech City"
+      />
+      <RestaurantCards
+        resName="Spicy Biryani"
+        rating="4.3"
+        cusine="Biriyani, Mughali, Roti, Curries"
+        address="Hitech City"
+      />
     </div>
   </div>
 );
