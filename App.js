@@ -1,5 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import {
+  restaurantsList,
+  appLogoUrl,
+  restaurantImgUrl,
+} from "./shared/swiggyApi";
 
 // const reactElement = (
 //   <div className="container">
@@ -23,8 +28,7 @@ import ReactDOM from "react-dom/client";
  *  - Address
  *  - Contact
  */
-const appLogoUrl =
-  "https://images.seeklogo.com/logo-png/34/2/swiggy-logo-png_seeklogo-348257.png";
+
 const Header = () => (
   <div className="header">
     <div className="logo">
@@ -43,24 +47,47 @@ const Header = () => (
 
 const RestaurantCards = (props) => {
   console.log(props, "props");
+  const {
+    name,
+    areaName,
+    avgRatingString,
+    totalRatingsString,
+    cuisines,
+    costForTwo,
+    cloudinaryImageId,
+  } = props?.resData?.info;
   return (
-    <div className="card-container">
-      <img src={appLogoUrl} alt="Restaurant" />
-      <div className="title">{props.resName}</div>
+    <div
+      className="card-container"
+      onClick={() => onCardClick(props?.resData?.cta)}
+    >
+      <img
+        src={restaurantImgUrl + getUrl(cloudinaryImageId)}
+        alt="Restaurant"
+      />
+      <div className="title">{name}</div>
       <div className="details">
-        <p>{props.rating} star</p>
-        <p>{props.cusine}</p>
-        <p>{props.address}</p>
+        <p>{avgRatingString} star</p>
+        <p>{cuisines.join(", ")}</p>
+        <p>{areaName}</p>
       </div>
     </div>
   );
 };
 
+const getUrl = (url) => {
+  const previewText = "Image preview";
+  return url.includes(previewText) ? url.replace(previewText, "").trim() : url;
+};
+
+const onCardClick = (cta) => {
+  window.open(cta?.link, "_blank");
+};
+
+console.log(restaurantsList, "restaurantsList");
+
 const Body = () => (
-  <div
-    className="body"
-    style={{ backgroundColor: "beige", height: "calc(100vh - 70px)" }}
-  >
+  <div className="body" style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
     <div className="search-bar">
       <input
         type="text"
@@ -68,30 +95,9 @@ const Body = () => (
       />
     </div>
     <div className="restaurant-cards">
-      <RestaurantCards
-        resName="Riyaz Biriyani"
-        rating="4.5"
-        cusine="Biriyani, Mughali, Roti, Curries"
-        address="Hitech City"
-      />
-      <RestaurantCards
-        resName="Biryani House"
-        rating="4.2"
-        cusine="Biriyani, Mughali, Roti, Curries"
-        address="Hitech City"
-      />
-      <RestaurantCards
-        resName="Tasty Biryani"
-        rating="4.7"
-        cusine="Biriyani, Mughali, Roti, Curries"
-        address="Hitech City"
-      />
-      <RestaurantCards
-        resName="Spicy Biryani"
-        rating="4.3"
-        cusine="Biriyani, Mughali, Roti, Curries"
-        address="Hitech City"
-      />
+      {restaurantsList.map((restaurant, index) => {
+        return <RestaurantCards key={index} resData={restaurant} />;
+      })}
     </div>
   </div>
 );
