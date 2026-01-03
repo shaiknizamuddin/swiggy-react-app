@@ -13,15 +13,21 @@ const Body = () => {
   async function getResListFromApi() {
     const apiUrl =
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.458489649946085&lng=78.39860314785044&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
-    const response = await fetch(apiUrl);
-    const apiResponse = await response.json();
+    try {
+      const response = await fetch(apiUrl);
+      const apiResponse = await response.json();
 
-    const finalData =
-      apiResponse?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants;
-    console.log(finalData, "apiResponse++++");
-    setApiDataCopy(finalData);
-    setFilteredRes(finalData);
+      const finalData =
+        apiResponse?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants;
+      console.log(finalData, "apiResponse++++");
+      setApiDataCopy(finalData);
+      setFilteredRes(finalData);
+    } catch (error) {
+      setApiDataCopy(restaurantsList);
+      setFilteredRes(restaurantsList);
+      console.log("Error fetching restaurant data:", error);
+    }
   }
 
   let filteredList = [];
